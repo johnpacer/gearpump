@@ -36,7 +36,7 @@ class MiniCluster {
     val worker = system.actorOf(Props(classOf[Worker], master), "worker")
 
     // Wait until worker register itself to master
-    waitUtilWorkerIsRegistered(master)
+    waitUntilWorkerIsRegistered(master)
     (master, worker)
   }
 
@@ -44,7 +44,7 @@ class MiniCluster {
     TestActorRef(props)
   }
 
-  private def waitUtilWorkerIsRegistered(master: ActorRef): Unit = {
+  private def waitUntilWorkerIsRegistered(master: ActorRef): Unit = {
     while (!isWorkerRegistered(master)) {}
   }
 
